@@ -9,7 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLabRecords, type LabRecord } from "@/hooks/useLabRecords";
 import type { LabInvoiceRow } from "@/hooks/useLabInvoices";
 import { clientOf } from "@/hooks/useDentalLab";
-import { normalizeStage } from "@/config/dentalLab";
 import { agingRisk, creditState, shouldHold, termDays, type AgingRisk, type CreditState } from "@/lib/labClients";
 import { useClientSummaries, money, sameClient } from "./dlabMoney";
 import { NewCaseDialog } from "./DlabCasesPage";
@@ -55,7 +54,7 @@ export default function DlabClientsPage() {
         name: profile?.title || name, profile, doctors: (profile?.data?.doctors || []).length,
         active: sum?.active || 0, casesCount: sum?.cases || 0, billed: sum?.billed || 0, paid: sum?.paid || 0, creditsTotal: sum?.credits || 0, balance,
         risk: agingRisk(oldest, balance), credit, onHold: shouldHold(profile?.status === "hold", credit), overdue30: (oldest ?? 0) > 30 && balance > 0,
-        cases: s.cases.filter((c: any) => c.status !== "cancelled" && sameClient(clientOf(c), name)) .filter((c: any) => normalizeStage(c.status) || true),
+        cases: s.cases.filter((c: any) => c.status !== "cancelled" && sameClient(clientOf(c), name)),
         invoices, payments: s.payments.filter((p) => p.status !== "bounced" && sameClient(p.title, name)), credits: s.credits.filter((p) => p.status !== "void" && sameClient(p.title, name)),
       };
     }).sort((a, b) => b.balance - a.balance);

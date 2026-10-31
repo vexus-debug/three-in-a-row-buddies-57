@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { format } from "date-fns";
 import { Pencil } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -55,7 +56,7 @@ export function ClientAccount360Drawer({ row, onClose, onEdit }: { row: ClientRo
             <div className="flex items-center gap-2"><Switch checked={p?.status === "hold"} onCheckedChange={toggleHold} disabled={save.isPending} /><span className="text-sm">Manual credit hold</span></div>
             {p && <dl className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-1 text-sm">
               {[["Contact", p.data?.contact_name], ["Phone", p.data?.phone], ["Email", p.data?.email], ["Billing address", p.data?.address], ["Delivery", p.data?.delivery_address], ["Courier notes", p.data?.courier_notes]].filter(([, v]) => v).map(([k, v]) => (
-                <><dt key={`${k}-k`} className="text-muted-foreground">{k}</dt><dd key={`${k}-v`}>{v}</dd></>
+                <Fragment key={k as string}><dt className="text-muted-foreground">{k}</dt><dd>{v}</dd></Fragment>
               ))}
             </dl>}
           </TabsContent>

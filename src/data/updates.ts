@@ -13,6 +13,19 @@ export interface UpdateEntry {
 
 export const updates: UpdateEntry[] = [
   {
+    version: "v2.38.0",
+    date: "October 31, 2026",
+    title: "Dental lab client accounts & Account 360",
+    kind: "feature",
+    items: [
+      { kind: "feature", text: "Create client accounts with contact, billing and delivery addresses, tax ID, payment terms, price tier and credit limit." },
+      { kind: "feature", text: "Doctor roster per practice with shade guide, margin and contact preferences." },
+      { kind: "feature", text: "Clients page is now a dense table with receivables, credit-hold and 30+ day delinquency counters." },
+      { kind: "feature", text: "Tap a practice to open Account 360: balance, credit-limit usage, hold switch, cases and a running ledger." },
+      { kind: "improvement", text: "Accounts over their credit limit are flagged for credit hold automatically." },
+    ],
+  },
+  {
     version: "v2.37.0",
     date: "October 31, 2026",
     title: "Dental lab CAD/CAM & equipment queues",
